@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yuli & Vito – Undangan Pernikahan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+Javanese&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== OPENING SCREEN ===== -->
+  <div id="opening-screen">
+    <!-- Background wedding photo (samar/blurred) -->
+    <div class="opening-bg-photo"></div>
+    <div class="opening-bg-overlay"></div>
+
+    <!-- Corner batik frames -->
+    <div class="batik-frame top-left"></div>
+    <div class="batik-frame top-right"></div>
+    <div class="batik-frame bottom-left"></div>
+    <div class="batik-frame bottom-right"></div>
+
+    <!--
+      FOTO SISI KIRI & KANAN (ganti wayang)
+      Ganti "foto-mempelai-pria.jpg" dan "foto-mempelai-wanita.jpg"
+      dengan nama file foto Anda.
+      Jika foto belum ada, placeholder akan muncul secara otomatis.
+    -->
+    <img class="opening-side-photo left"
+         src="foto-mempelai-pria.jpg"
+         alt="Mempelai Pria"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <div class="opening-side-photo-placeholder left" style="display:none;">
+      <span>Foto Mempelai Pria</span>
+    </div>
+
+    <img class="opening-side-photo right"
+         src="foto-mempelai-wanita.jpg"
+         alt="Mempelai Wanita"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <div class="opening-side-photo-placeholder right" style="display:none;">
+      <span>Foto Mempelai Wanita</span>
+    </div>
+
+    <div class="opening-content">
+      <div class="opening-inner">
+        <p class="opening-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+        <div class="opening-ornament"></div>
+        <p class="opening-sub">Kami mengundang kehadiran Bapak/Ibu/Saudara/i</p>
+        <h1 class="opening-title">Undangan<br/><em>Pernikahan</em></h1>
+        <div class="opening-couple">
+          <span class="couple-name">Yuli</span>
+          <span class="couple-amp">&amp;</span>
+          <span class="couple-name">Vito</span>
+        </div>
+        <p class="opening-date">Minggu, 05 Juli 2026</p>
+        <button id="open-btn" onclick="openInvitation()">
+          <span>Buka Undangan</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MUSIC BUTTON ===== -->
+  <button id="music-btn" title="Toggle Musik" onclick="toggleMusic()">
+    <svg id="music-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    <svg id="music-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <audio id="background-music" loop>
+    <source src="gambar/The Way of The Tears - Exclusive Nasheed - Muhammad al Muqit - MercifulServant.mp3" type="audio/mpeg"/>
+  </audio>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content" class="hidden">
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <div class="nav-brand">Y <span>&amp;</span> V</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#couple">Mempelai</a></li>
+        <li><a href="#event">Acara</a></li>
+        <li><a href="#gallery">Galeri</a></li>
+        <li><a href="#rsvp">RSVP</a></li>
+      </ul>
+      <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero">
+      <!--
+        LATAR BELAKANG HERO: foto pernikahan yang samar/blur
+        Ganti "foto-background-wedding.jpg" dengan nama file foto Anda.
+        File yang sama juga dipakai di opening screen.
+      -->
+      <div class="hero-bg-photo"></div>
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-deco-line"></div>
+
+      <div class="hero-content">
+        <p class="hero-label fade-in-up">Undangan Pernikahan</p>
+        <div class="hero-divider fade-in-up delay-1"></div>
+        <p class="hero-bismillah fade-in-up delay-1">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+        <h1 class="hero-names fade-in-up delay-2">
+          <span class="name-groom">Yuli oktaviani A.Md.Kep</span>
+          <span class="names-amp">&#9829;</span>
+          <span class="name-bride">Vito hasbi Thoyib S.Kom</span>
+        </h1>
+        <p class="hero-tagline fade-in-up delay-3">
+          <em>"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri…"</em><br/>
+          <small>— QS. Ar-Rum: 21</small>
+        </p>
+        <div class="hero-date-badge fade-in-up delay-3">
+          <span class="date-day">Minggu</span>
+          <span class="date-num">05</span>
+          <span class="date-mon">Juli 2026</span>
+        </div>
+        <a href="#couple" class="hero-scroll-btn fade-in-up delay-4">
+          Lihat Selengkapnya
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== COUNTDOWN ===== -->
+    <section id="countdown-section" class="section-dark">
+      <div class="container">
+        <p class="section-sub reveal">Menghitung Hari Bahagia</p>
+        <h2 class="section-title reveal">Hitung Mundur</h2>
+        <div class="countdown-wrap reveal">
+          <div class="count-box"><span id="cd-days">00</span><label>Hari</label></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-hours">00</span><label>Jam</label></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-mins">00</span><label>Menit</label></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-secs">00</span><label>Detik</label></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COUPLE ===== -->
+    <section id="couple" class="section-light">
+      <div class="container">
+        <p class="section-sub reveal">Mempelai</p>
+        <h2 class="section-title reveal">Dua Insan Bersatu</h2>
+        <div class="couple-grid">
+
+          <!-- Mempelai Pria -->
+          <div class="couple-card reveal">
+            <div class="couple-photo">
+              <!--
+                FOTO MEMPELAI PRIA
+                Ganti src dengan nama file foto Anda (misal: foto-yuli.jpg)
+              -->
+              <img src="gambar/yuli.jpeg" alt="Foto Yuli Oktaviani"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="couple-photo-placeholder" style="display:none;">
+                <div class="ph-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                  </svg>
+                </div>
+                <div class="ph-label">Foto Mempelai Pria</div>
+              </div>
+            </div>
+            <h3>Yuli Oktaviani, Amd.Kep</h3>
+            <p class="couple-role">Mempelai Wanita</p>
+            <p class="couple-parents">
+              Putri dari<br/>
+              <strong>Bapak Alm. Maryani</strong><br/>
+              &amp; <strong>Ibu Eha</strong>
+            </p>
+          </div>
+
+          <!-- Mempelai Wanita -->
+          <div class="couple-card reveal delay-1">
+            <div class="couple-photo">
+              <!--
+                FOTO MEMPELAI WANITA
+                Ganti src dengan nama file foto Anda (misal: foto-vito.jpg)
+              -->
+              <img src="gambar/vito.jpeg" alt="Foto Vito Hasby"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="couple-photo-placeholder" style="display:none;">
+                <div class="ph-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                  </svg>
+                </div>
+                <div class="ph-label">Foto Mempelai Pria</div>
+              </div>
+            </div>
+            <h3>Vito hasbi Thoyib, S.Kom.</h3>
+            <p class="couple-role">Mempelai Pria</p>
+            <p class="couple-parents">
+              Putra dari<br/>
+              <strong>Bapak Muhammad Toha</strong><br/>
+              &amp; <strong>Ibu Ovie Krisnawati Rahmah</strong>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EVENT – ONLY RESEPSI ===== -->
+    <section id="event" class="section-dark">
+      <div class="container">
+        <p class="section-sub reveal">Jadwal Acara</p>
+        <h2 class="section-title reveal">Resepsi Pernikahan</h2>
+        <div class="event-single reveal">
+          <div class="event-card">
+            <div class="event-icon">
+              <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="30" r="28" fill="none" stroke="#C8A040" stroke-width="2"/>
+                <path d="M15 38 Q30 20 45 38" stroke="#C8A040" stroke-width="2" fill="none"/>
+                <path d="M20 44 Q30 30 40 44" stroke="#C8A040" stroke-width="2" fill="none"/>
+                <path d="M25 50 Q30 40 35 50" stroke="#C8A040" stroke-width="2" fill="none"/>
+                <circle cx="30" cy="18" r="4" fill="#C8A040"/>
+              </svg>
+            </div>
+            <h3>Resepsi Pernikahan</h3>
+            <p class="event-time">Minggu, 05 Juli 2026</p>
+            <p class="event-time">11.00 – 15.00 WIB</p>
+            <p class="event-loc">
+              Rumah Mempelai Perempuan<br/>
+              Kp. Lontar, Kec. Tirtayasa<br/>
+              Kab. Serang – Banten
+            </p>
+            <a class="event-map-btn" href="https://maps.app.goo.gl/8cDP1eieATWewxjGA?g_st=ac" target="_blank">
+              📍 Lihat Peta
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUOTE ===== -->
+    <section id="quote-section" class="section-light">
+      <div class="container">
+        <div class="quote-ornament reveal"></div>
+        <blockquote class="quote-text reveal delay-1">
+          "Kalau memang jodoh, walau jauh pasti bertemu.<br/>Kalau sudah berjodoh, langit dan bumi pun menjadi saksinya."
+        </blockquote>
+        <p class="quote-src reveal delay-2">— Pepatah Jawa</p>
+      </div>
+    </section>
+    <!-- ===================================================
+     SEJARAH PERTEMUAN – Sisipkan SEBELUM section#gallery
+     =================================================== -->
+<section id="love-story" class="section-light ls-section">
+  <div class="container">
+    <p class="section-sub reveal">Perjalanan Cinta</p>
+    <h2 class="section-title reveal">Sejarah Pertemuan</h2>
+    <p class="ls-intro reveal">
+      Dua hati yang Allah pertemukan lewat jalan yang tak terduga,<br/>
+      merajut kenangan demi kenangan hingga tiba di hari yang paling dinantikan.
+    </p>
+
+    <!-- ORNAMEN GARIS TENGAH -->
+    <div class="ls-timeline">
+
+      <!-- ── ITEM 1 ── -->
+      <div class="ls-item ls-left reveal">
+        <div class="ls-card">
+          <div class="ls-year">2020</div>
+          <div class="ls-icon-wrap">
+            <!-- Icon bintang / pertemuan pertama -->
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="var(--gold)" stroke-width="1.5"/>
+              <path d="M20 10 l2.5 7h7.5l-6 4.5 2.3 7L20 24l-6.3 4.5 2.3-7-6-4.5h7.5z"
+                    fill="var(--gold)" opacity="0.85"/>
+            </svg>
+          </div>
+          <h3 class="ls-title">Pertemuan Pertama</h3>
+          <p class="ls-desc">
+            Takdir mempertemukan kami untuk pertama kali.
+            Sebuah perkenalan sederhana yang meninggalkan kesan tak terlupakan
+            di sudut hati yang paling dalam.
+          </p>
+        </div>
+        <div class="ls-dot"></div>
+      </div>
+
+      <!-- ── ITEM 2 ── -->
+      <div class="ls-item ls-right reveal delay-1">
+        <div class="ls-dot"></div>
+        <div class="ls-card">
+          <div class="ls-year">2021</div>
+          <div class="ls-icon-wrap">
+            <!-- Icon pesan / obrolan -->
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="var(--gold)" stroke-width="1.5"/>
+              <path d="M10 14h20v12H22l-4 3-2-3H10z" stroke="var(--gold)" stroke-width="1.5"
+                    stroke-linejoin="round" fill="none"/>
+              <line x1="14" y1="19" x2="26" y2="19" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round"/>
+              <line x1="14" y1="22" x2="21" y2="22" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="ls-title">Mengenal Lebih Dekat</h3>
+          <p class="ls-desc">
+            Obrolan demi obrolan membuat kami semakin memahami satu sama lain.
+            Dari teman menjadi sahabat, dari sahabat tumbuh menjadi lebih dari itu.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── ITEM 3 ── -->
+      <div class="ls-item ls-left reveal delay-2">
+        <div class="ls-card">
+          <div class="ls-year">2023</div>
+          <div class="ls-icon-wrap">
+            <!-- Icon cincin / komitmen -->
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="var(--gold)" stroke-width="1.5"/>
+              <circle cx="20" cy="20" r="7" stroke="var(--gold)" stroke-width="1.5" fill="none"/>
+              <path d="M17 13 l3-3 3 3" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" fill="none"/>
+              <circle cx="20" cy="20" r="2.5" fill="var(--gold)" opacity="0.7"/>
+            </svg>
+          </div>
+          <h3 class="ls-title">Resmi Bersama</h3>
+          <p class="ls-desc">
+            Dengan bismillah dan doa yang tulus, kami memutuskan untuk
+            menjalani perjalanan hidup bersama. Sebuah komitmen yang dijaga
+            dengan sepenuh hati.
+          </p>
+        </div>
+        <div class="ls-dot"></div>
+      </div>
+
+      <!-- ── ITEM 4 ── -->
+      <div class="ls-item ls-right reveal delay-3">
+        <div class="ls-dot"></div>
+        <div class="ls-card ls-card-final">
+          <div class="ls-year ls-year-final">2026</div>
+          <div class="ls-icon-wrap">
+            <!-- Icon hati / pernikahan -->
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="var(--gold)" stroke-width="1.5"/>
+              <path d="M20 29 C20 29 10 22 10 16 a5 5 0 0 1 10-1 5 5 0 0 1 10 1 C30 22 20 29 20 29z"
+                    fill="var(--gold)" opacity="0.9"/>
+            </svg>
+          </div>
+          <h3 class="ls-title">Hari yang Paling Dinantikan</h3>
+          <p class="ls-desc">
+            05 Juli 2026 — hari di mana dua insan, dua keluarga, dan dua hati
+            disatukan dalam ikatan suci pernikahan. Semoga menjadi awal
+            perjalanan yang penuh berkah dan kebahagiaan abadi.
+          </p>
+          <div class="ls-badge">Yuli &amp; Vito</div>
+        </div>
+      </div>
+
+    </div><!-- /ls-timeline -->
+  </div>
+</section>
+<!-- ===== END SEJARAH PERTEMUAN ===== -->
+
+    <!-- ===== GALLERY – Slot Foto ===== -->
+    <section id="gallery" class="section-dark">
+      <div class="container">
+        <p class="section-sub reveal">Momen Kami</p>
+        <h2 class="section-title reveal">Galeri Foto</h2>
+        <div class="gallery-grid">
+
+          <!--
+            GALERI: Ganti src setiap <img> dengan nama file foto Anda.
+            Contoh: foto-galeri-1.jpg, foto-galeri-2.jpg, dst.
+            Jika foto belum ada, placeholder otomatis tampil.
+          -->
+
+          <div class="gallery-item reveal" style="--d:0s">
+            <img src="gambar/gambar 1.jpeg" alt="Galeri 1"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="gallery-photo-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Foto 1</span>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal" style="--d:0.1s">
+            <img src="gambar/gambar 2.jpeg" alt="Galeri 2"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="gallery-photo-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Foto 2</span>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal" style="--d:0.2s">
+            <img src="gambar/gambar 3.jpeg" alt="Galeri 3"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="gallery-photo-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Foto 3</span>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal" style="--d:0.3s">
+            <img src="gambar/gambar 4.jpeg" alt="Galeri 4"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="gallery-photo-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Foto 4</span>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal" style="--d:0.4s">
+            <img src="foto-galeri-5.jpg" alt="Galeri 5"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="gallery-photo-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Foto 5</span>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal" style="--d:0.5s">
+            <img src="foto-galeri-6.jpg" alt="Galeri 6"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="gallery-photo-placeholder" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Foto 6</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RSVP ===== -->
+    <section id="rsvp" class="section-light">
+      <div class="container">
+        <p class="section-sub reveal">Konfirmasi Kehadiran</p>
+        <h2 class="section-title reveal">RSVP</h2>
+        <div class="rsvp-wrap reveal">
+          <div class="rsvp-form-box">
+            <input type="text" id="rsvp-name" placeholder="Nama Lengkap Anda" />
+            <input type="text" id="rsvp-address" placeholder="Asal Kota" />
+            <div class="rsvp-radio-group">
+              <label class="rsvp-radio">
+                <input type="radio" name="attend" value="hadir" checked/>
+                <span>Hadir</span>
+              </label>
+              <label class="rsvp-radio">
+                <input type="radio" name="attend" value="tidak"/>
+                <span>Tidak Hadir</span>
+              </label>
+            </div>
+            <textarea id="rsvp-msg" placeholder="Pesan &amp; Doa untuk Mempelai..." rows="4"></textarea>
+            <button class="rsvp-btn" onclick="submitRSVP()">Kirim Ucapan</button>
+          </div>
+          <div id="rsvp-messages" class="rsvp-messages">
+            <div class="rsvp-msg-item">
+              <strong>Dewi Ayu</strong> <span class="rsvp-hadir">Hadir</span>
+              <p>Semoga menjadi keluarga yang sakinah mawaddah wa rahmah 🙏</p>
+            </div>
+            <div class="rsvp-msg-item">
+              <strong>Budi Santoso</strong> <span class="rsvp-hadir">Hadir</span>
+              <p>Barakallah untuk kalian berdua!</p>
+            </div>
+            <div class="rsvp-msg-item">
+              <strong>Ratna Sari</strong> <span class="rsvp-tidak">Tidak Hadir</span>
+              <p>Tidak bisa hadir tapi doa selalu menyertai.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DUKUNGAN / AMPLOP DIGITAL ===== -->
+    <section id="dukungan" class="section-dark">
+      <div class="container">
+        <p class="section-sub reveal">Amplop Digital</p>
+        <h2 class="section-title reveal">Kirim Doa &amp; Dukungan</h2>
+        <p class="reveal" style="text-align:center; color:var(--cream-dk); font-size:0.95rem; margin-top:-1.5rem; margin-bottom:2.5rem; font-style:italic;">
+          Bagi yang ingin memberikan hadiah, Anda dapat mentransfer melalui:
+        </p>
+        <div class="dukungan-grid reveal">
+
+          <!-- ATM / Transfer -->
+          <div class="dukungan-card">
+            <h4>Transfer Bank / ATM</h4>
+            <p class="bank-name">BCA / BRI / Mandiri</p>
+            <!--
+              FOTO ATM: Ganti src dengan foto kartu ATM atau bukti rekening Anda.
+              Nama file contoh: foto-atm.jpg
+            -->
+            <div class="dukungan-photo-slot">
+              <img src="gambar/bank-bni-square-rounded-logo-free-png.webp" alt="Info Rekening"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'; this.nextElementSibling.nextElementSibling.style.display='block';" />
+              <div style="display:none; flex-direction:column; align-items:center; gap:0.4rem; padding:1rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#C8A040" stroke-width="1.5">
+                  <rect x="1" y="5" width="22" height="14" rx="2"/>
+                  <line x1="1" y1="10" x2="23" y2="10"/>
+                </svg>
+                <span class="slot-hint">Taruh foto info rekening / ATM di sini</span>
+              </div>
+            </div>
+            <p class="dukungan-note">
+              No. Rekening:<br/>
+              <span class="dukungan-rekening">…………………………</span>
+            </p>
+            <p class="dukungan-note" style="margin-top:0.4rem;">a.n. Yuli Oktaviani</p>
+          </div>
+
+          <!-- QRIS -->
+          <div class="dukungan-card">
+            <h4>QRIS</h4>
+            <p class="bank-name">Scan &amp; Transfer</p>
+            <!--
+              FOTO QRIS: Ganti src dengan foto kode QRIS Anda.
+              Nama file contoh: foto-qris.jpg
+            -->
+            <div class="dukungan-photo-slot">
+              <img src="foto-qris.jpg" alt="QRIS"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'; this.nextElementSibling.nextElementSibling.style.display='block';" />
+              <div style="display:none; flex-direction:column; align-items:center; gap:0.4rem; padding:1rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#C8A040" stroke-width="1.5">
+                  <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                  <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/>
+                  <rect x="18" y="18" width="3" height="3"/>
+                </svg>
+                <span class="slot-hint">Taruh foto QRIS Anda di sini</span>
+              </div>
+            </div>
+            <p class="dukungan-note">
+              Scan kode QRIS<br/>
+              untuk transfer mudah &amp; cepat
+            </p>
+          </div>
+
+        </div>
+        <p class="reveal" style="text-align:center; color:rgba(200,160,64,0.35); font-size:0.75rem; margin-top:2rem; letter-spacing:0.1em;">
+          * Hadiah bukan suatu kewajiban. Kehadiran Anda adalah kebahagiaan terbesar kami. 🙏
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="footer">
+      <div class="footer-deco"></div>
+      <div class="footer-content">
+        <div class="footer-names">Yuli &amp; Vito</div>
+        <p class="footer-tagline">05 Juli 2026</p>
+        <p class="footer-quote">Terima kasih telah menjadi bagian dari hari bahagia kami.</p>
+        <div class="footer-ornament"></div>
+        <p class="footer-credit">Made with ❤ for our special day</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
